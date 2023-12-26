@@ -6,8 +6,7 @@
     1. GetUserSex | DONE
     2. GetUserAge | DONE
     3. GetUserHeight | DONE
-
-    4. GetUserMass | TO DO
+    4. GetUserMass | DONE
 */
 
 bool getUserSex() {
@@ -54,12 +53,27 @@ int getUserHeight() {
     } while (true);
 }
 
+int getUserMass() {
+    int mass;
+    do {
+        std::cout << "Podaj swoją masę w dekagramach:\n";
+        std::cin >> mass;
+
+        if (mass <= 0) {
+            std::cout << "Niepoprawna masa, masa powinna być większa niż 0. Spróbuj ponownie.\n";
+        } else {
+            return mass;
+        }
+    } while (true);
+}
+
 int main() {
     std::cout << "Witaj w kalkulatorze zapotrzebowania kalorycznego\n";
     
     bool userSex = getUserSex();
     int userAge = getUserAge();
     int userHeight = getUserHeight();
-
+    int userMass = getUserMass();
+    
     return 0;
 }
