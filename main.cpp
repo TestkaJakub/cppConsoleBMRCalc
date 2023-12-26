@@ -5,8 +5,8 @@
 
     1. GetUserSex | DONE
     2. GetUserAge | DONE
+    3. GetUserHeight | DONE
 
-    3. GetUserHeight | TO DO
     4. GetUserMass | TO DO
 */
 
@@ -40,13 +40,26 @@ int getUserAge() {
     } while (true);
 }
 
+int getUserHeight() {
+    int height;
+    do {
+        std::cout << "Podaj swój wzrost w centymetrach:\n";
+        std::cin >> height;
+
+        if (height < 20 || height > 300) {
+            std::cout << "Niepoprawny wzrost, wzrost powinien być większy nądź równy 20 cm i mniejszy bądź równy 300 cm. Spróbuj ponownie.\n";
+        } else {
+            return height;
+        }
+    } while (true);
+}
+
 int main() {
     std::cout << "Witaj w kalkulatorze zapotrzebowania kalorycznego\n";
     
     bool userSex = getUserSex();
     int userAge = getUserAge();
-
-    
+    int userHeight = getUserHeight();
 
     return 0;
 }
