@@ -51,13 +51,13 @@ int getUserHeight() {
 int getUserMass() {
     int mass;
     do {
-        std::cout << "Podaj swoja mase w dekagramach:\n";
+        std::cout << "Podaj mase swojego ciala w kg:\n";
         std::cin >> mass;
 
         if (mass <= 0) {
             std::cout << "Niepoprawna masa, masa powinna byc wieksza niz 0. Sprobuj ponownie.\n";
         } else {
-            return mass;
+            return mass * 10;
         }
     } while (true);
 }
@@ -66,7 +66,7 @@ double calculateBMR(bool userSex, int userAge, int userHeight, int userMass) {
     int s; // This variable is named s in Mifflin St Jeor equation
     if (userSex) s = -161; // Female
     else s = 5; // Male
-    return userMass * 0.1 + 6.25 * userHeight - 5 * userAge + s;
+    return userMass + 6.25 * userHeight - 5 * userAge + s;
 }
 
 int main() {
