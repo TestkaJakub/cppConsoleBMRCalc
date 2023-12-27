@@ -1,22 +1,43 @@
+#include <array>
+#include <algorithm>
 #include <iostream>
 #include <string.h>
 /*
     P = (10 * mass in kg / 1kg) + (6.25 * height in cm / 1cm) - (5 * age in years / 1 year) ( +5 for males || -161 for females)
+
+    1. Variables | DONE
+    2. Strings | DONE
+    3. Int and doubles | DONE
+    4. If statements and loops | DONE
+    5. Arrays | DONE
+    6. Functions | DONE
+    7. Input | DONE
+
+    1. Comments in english
+    2. Date
+    3. Exception handling
 */
 
+
 bool getUserSex() {
-    char userSex;    
+    std::string userSex;
+    std::array<std::string, 10> female = {"k", "d", "g", "w", "kobieta", "dziewczyna", "female", "girl", "women", "woman"};
+    std::array<std::string, 10> male = {"m", "c", "ch", "mezczyzna", "facet", "chlopak", "male", "boy", "man", "men"};
+    
+
     do {
-        std::cout << "Podaj swoja plec ('K' jesli kobieta /'M' jesli mezczyzna):\n";
+        std::cout << "Podaj swoja plec (wpisz h zeby zobaczyc liste akceptowanych wartosci):\n";
         std::cin >> userSex;
-        
-        if (userSex == 'M' || userSex == 'm') {
-            return 0;
-        } else if (userSex == 'K' || userSex == 'k') {
-            return 1;
-        } else {
-            std::cout << "Niepoprawna plec, sprobuj ponownie.\n";
+        std::transform(userSex.begin(), userSex.end(), userSex.begin(), ::tolower);
+        if (userSex == "h"){
+            std::cout << "Akceptowane wartosci dla plci - kobieta:\n";
+            for (const std::string& value : female) std::cout << "- " << value << "\n";
+            std::cout << "Akceptowane wartosci dla plci - mezczyzna:\n";
+            for (const std::string& value : male) std::cout << "- " << value << "\n";
         }
+        else if (std::find(female.begin(), female.end(), userSex) != female.end()) return true;
+        else if ((std::find(male.begin(), male.end(), userSex) != male.end())) return false;
+        else std::cout << "Niepoprawna plec, sprobuj ponownie.\n";
     } while (true);
 }
 
