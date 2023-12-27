@@ -2,17 +2,12 @@
 #include <string.h>
 /*
     P = (10 * mass in kg / 1kg) + (6.25 * height in cm / 1cm) - (5 * age in years / 1 year) ( +5 for males || -161 for females)
-
-    1. GetUserSex | DONE
-    2. GetUserAge | DONE
-    3. GetUserHeight | DONE
-    4. GetUserMass | DONE
 */
 
 bool getUserSex() {
     char userSex;    
     do {
-        std::cout << "Podaj swoją płeć ('K' jeśli kobieta /'M' jeśli mężczyzna):\n";
+        std::cout << "Podaj swoja plec ('K' jesli kobieta /'M' jesli mezczyzna):\n";
         std::cin >> userSex;
         
         if (userSex == 'M' || userSex == 'm') {
@@ -20,7 +15,7 @@ bool getUserSex() {
         } else if (userSex == 'K' || userSex == 'k') {
             return 1;
         } else {
-            std::cout << "Niepoprawna płeć, spróbuj ponownie.\n";
+            std::cout << "Niepoprawna plec, sprobuj ponownie.\n";
         }
     } while (true);
 }
@@ -28,11 +23,11 @@ bool getUserSex() {
 int getUserAge() {
     int age;
     do {
-        std::cout << "Podaj swój wiek:\n";
+        std::cout << "Podaj swoj wiek:\n";
         std::cin >> age;
 
         if (age < 5 || age > 149) {
-            std::cout << "Niepoprawny wiek, wiek powinien być mniejszy niż 150 i większy niż 4 spróbuj ponownie.\n";
+            std::cout << "Niepoprawny wiek, wiek powinien byc mniejszy niz 150 i wiekszy niz 4 spróbuj ponownie.\n";
         } else {
             return age;
         }
@@ -42,11 +37,11 @@ int getUserAge() {
 int getUserHeight() {
     int height;
     do {
-        std::cout << "Podaj swój wzrost w centymetrach:\n";
+        std::cout << "Podaj swoj wzrost w centymetrach:\n";
         std::cin >> height;
 
         if (height < 20 || height > 300) {
-            std::cout << "Niepoprawny wzrost, wzrost powinien być większy nądź równy 20 cm i mniejszy bądź równy 300 cm. Spróbuj ponownie.\n";
+            std::cout << "Niepoprawny wzrost, wzrost powinien byc wiekszy badz rowny 20 cm i mniejszy badz rowny 300 cm. Sprobuj ponownie.\n";
         } else {
             return height;
         }
@@ -56,15 +51,22 @@ int getUserHeight() {
 int getUserMass() {
     int mass;
     do {
-        std::cout << "Podaj swoją masę w dekagramach:\n";
+        std::cout << "Podaj swoja mase w dekagramach:\n";
         std::cin >> mass;
 
         if (mass <= 0) {
-            std::cout << "Niepoprawna masa, masa powinna być większa niż 0. Spróbuj ponownie.\n";
+            std::cout << "Niepoprawna masa, masa powinna byc wieksza niz 0. Sprobuj ponownie.\n";
         } else {
             return mass;
         }
     } while (true);
+}
+
+double calculateBMR(bool userSex, int userAge, int userHeight, int userMass) {
+    int s; // This variable is named s in Mifflin St Jeor equation
+    if (userSex) s = -161; // Female
+    else s = 5; // Male
+    return userMass * 0.1 + 6.25 * userHeight - 5 * userAge + s;
 }
 
 int main() {
@@ -74,6 +76,9 @@ int main() {
     int userAge = getUserAge();
     int userHeight = getUserHeight();
     int userMass = getUserMass();
-    
+    double userBMR = calculateBMR(userSex, userAge, userHeight, userMass);
+
+    std::cout << "Twoje BMR wynosi "<<userBMR<<" kcal.\n";
+
     return 0;
 }
