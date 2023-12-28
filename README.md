@@ -2,7 +2,7 @@
 
 This is a console application written in C++ that calculates the Basal Metabolic Rate (BMR) of a person. 
 
-**NOTE: The application is written with Polish users in mind therefor it utilizes the Polish language.
+**NOTE: The application is written with Polish users in mind therefore it utilizes the Polish language.**
 
 ## Getting Started
 
